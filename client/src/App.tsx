@@ -1,7 +1,10 @@
+import LoginPage from "./pages/login/LoginPage";
 function App() {
   return (
     <>
-      <h1>This is client</h1>
+      <div>
+        <LoginPage />
+      </div>
     </>
   );
 }
