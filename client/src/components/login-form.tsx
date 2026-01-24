@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -31,6 +33,8 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const navigate = useNavigate();
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="border-t-4 border-t-blue-900 shadow-md">
@@ -57,6 +61,7 @@ export function LoginForm({
                 variant="outline"
                 type="button"
                 className="w-full py-5 font-medium text-slate-700"
+                onClick={() => navigate("/dashboard")}
               >
                 <GoogleIcon />
                 Login with Google
