@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/card";
 import { Field, FieldDescription, FieldGroup } from "@/components/ui/field";
 
-import LogoInformatika from "../../public/logo_informatika.png";
+import LogoInformatika from "../assets/logo_informatika.png";
 
 export function LoginForm({
   className,
