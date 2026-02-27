@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import LoginPage from "./pages/login/LoginPage";
-import StudentDashboardPage from "./pages/mahasiswa/StudentDashboardPage";
+import StudentDashboardPage from "./pages/mahasiswa/dashboard/StudentDashboardPage";
 import StudentUploadDPSPage from "./pages/mahasiswa/StudentUploadDPSPage";
 import KoordinatorDashboardPage from "./pages/koordinator/KoordinatorDashboardPage";
 import DosenDashboardPage from "./pages/dosen/DosenDashboardPage";

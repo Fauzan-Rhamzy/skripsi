@@ -1,96 +1,15 @@
-import { Button } from "@/components/ui/button";
 import {
   Table,
   TableHeader,
   TableRow,
   TableHead,
-  TableCell,
   TableBody,
 } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
+import TopicTableRow from "./components/TopicTableRow";
 
-const topics = [
-  {
-    id: "1",
-    code: "FR01",
-    title: "Implementasi Deep Learning pada Citra Medis",
-    lecturerCode: "FR",
-    hasNotes: true,
-    status: "available",
-    queueCount: 0,
-  },
-  {
-    id: "2",
-    code: "DR01",
-    title: "Pengembangan Sistem IoT Berbasis LoRa",
-    lecturerCode: "DR",
-    hasNotes: false,
-    status: "queued",
-    queueCount: 3,
-  },
-  {
-    id: "3",
-    code: "DR02",
-    title: "Analisis Sentimen Menggunakan NLP Transformer",
-    lecturerCode: "DR",
-    hasNotes: true,
-    status: "selected",
-    queueCount: 4,
-  },
-  {
-    id: "4",
-    code: "DR03",
-    title: "Rancang Bangun Aplikasi E-Commerce Microservices",
-    lecturerCode: "DR",
-    hasNotes: false,
-    status: "taken",
-    queueCount: 5,
-  },
-];
+import { topics } from "./mockData";
 
 export default function StudentDashboardPage() {
-  const renderAction = (status: string) => {
-    switch (status) {
-      case "available":
-        return (
-          <Button
-            size="sm"
-            className="w-full bg-green-600 hover:bg-green-800 font-bold border-2 transition-all hover:cursor-pointer"
-          >
-            Ambil
-          </Button>
-        );
-      case "queued":
-        return (
-          <Badge
-            variant="outline"
-            className="w-full justify-center py-1.5 bg-blue-50 text-blue-700 border-blue-200"
-          >
-            Dalam Antrean
-          </Badge>
-        );
-      case "selected":
-        return (
-          <Badge className="w-full justify-center py-1.5 bg-blue-600 hover:bg-blue-700 text-white shadow-md">
-            Terpilih
-          </Badge>
-        );
-      case "taken":
-        return (
-          <Button
-            disabled
-            size="sm"
-            variant="secondary"
-            className="w-full bg-gray-200 text-gray-500 border border-gray-300"
-          >
-            Diambil
-          </Button>
-        );
-      default:
-        return null;
-    }
-  };
-
   return (
     <div className="p-8">
       <div className="mb-6">
@@ -131,47 +50,48 @@ export default function StudentDashboardPage() {
           </TableHeader>
           <TableBody>
             {topics.map((topic) => (
-              <TableRow key={topic.id} className="hover:bg-slate-50">
-                <TableCell className="font-medium text-center border-r">
-                  {topic.code}
-                </TableCell>
-                <TableCell className="font-medium border-r">
-                  {topic.title}
-                </TableCell>
-                <TableCell className="text-center border-r">
-                  {topic.lecturerCode}
-                </TableCell>
+              <TopicTableRow key={topic.id} topic={topic} />
+              // <TableRow key={topic.id} className="hover:bg-slate-50">
+              //   <TableCell className="font-medium text-center border-r">
+              //     {topic.code}
+              //   </TableCell>
+              //   <TableCell className="font-medium border-r">
+              //     {topic.title}
+              //   </TableCell>
+              //   <TableCell className="text-center border-r">
+              //     {topic.lecturerCode}
+              //   </TableCell>
 
-                <TableCell className="text-center border-r">
-                  <a
-                    href="#"
-                    className="text-sm font-semibold text-blue-600 hover:underline flex items-center justify-center gap-1"
-                  >
-                    Lihat Topik
-                  </a>
-                </TableCell>
+              //   <TableCell className="text-center border-r">
+              //     <a
+              //       href="#"
+              //       className="text-sm font-semibold text-blue-600 hover:underline flex items-center justify-center gap-1"
+              //     >
+              //       Lihat Topik
+              //     </a>
+              //   </TableCell>
 
-                <TableCell className="text-center border-r">
-                  {topic.hasNotes ? (
-                    <a
-                      href="#"
-                      className="text-sm font-semibold text-blue-600 hover:underline flex items-center justify-center gap-1"
-                    >
-                      Lihat Catatan
-                    </a>
-                  ) : (
-                    <span className="text-gray-300">-</span>
-                  )}
-                </TableCell>
+              //   <TableCell className="text-center border-r">
+              //     {topic.hasNotes ? (
+              //       <a
+              //         href="#"
+              //         className="text-sm font-semibold text-blue-600 hover:underline flex items-center justify-center gap-1"
+              //       >
+              //         Lihat Catatan
+              //       </a>
+              //     ) : (
+              //       <span className="text-gray-300">-</span>
+              //     )}
+              //   </TableCell>
 
-                <TableCell className="p-3 border-r">
-                  {renderAction(topic.status)}
-                </TableCell>
+              //   <TableCell className="p-3 border-r">
+              //     {renderAction(topic.status)}
+              //   </TableCell>
 
-                <TableCell className="text-center font-bold text-slate-700">
-                  {topic.queueCount}
-                </TableCell>
-              </TableRow>
+              //   <TableCell className="text-center font-bold text-slate-700">
+              //     {topic.queueCount}
+              //   </TableCell>
+              // </TableRow>
             ))}
           </TableBody>
         </Table>
