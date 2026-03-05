@@ -8,8 +8,19 @@ import {
 import TopicTableRow from "./components/TopicTableRow";
 
 import { topics } from "./mockData";
+import type { Topic } from "./types";
+import { useEffect } from "react";
+
+const handleSelectTopic = (topic: Topic) => {
+  console.log("Topik: ", topic);
+};
 
 export default function StudentDashboardPage() {
+  useEffect(() => {
+    console.log("Ambil data semua topik yang aktif di semester ini");
+    // const topics = mockTopics;
+  }, []);
+
   return (
     <div className="p-8">
       <div className="mb-6">
@@ -50,7 +61,11 @@ export default function StudentDashboardPage() {
           </TableHeader>
           <TableBody>
             {topics.map((topic) => (
-              <TopicTableRow key={topic.id} topic={topic} />
+              <TopicTableRow
+                key={topic.id}
+                topic={topic}
+                onSelectTopic={handleSelectTopic}
+              />
               // <TableRow key={topic.id} className="hover:bg-slate-50">
               //   <TableCell className="font-medium text-center border-r">
               //     {topic.code}

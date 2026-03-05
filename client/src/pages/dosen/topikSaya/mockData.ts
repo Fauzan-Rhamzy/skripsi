@@ -1,0 +1,57 @@
+import type { Topic } from "./types";
+
+export const topics: Topic[] = [
+  {
+    id: "1",
+    code: "FR01",
+    title: "Implementasi Deep Learning pada Citra Medis",
+    lecturerCode: "FR",
+    hasNotes: true,
+    status: "available",
+    queueCount: 0
+  },
+  {
+    id: "2",
+    code: "FR02",
+    title: "Pengembangan Sistem IoT Berbasis LoRa",
+    lecturerCode: "DR",
+    hasNotes: false,
+    status: "queued",
+    queueCount: 3,
+    students:[
+      { id: "1", name: "Budi Santoso", npm: "6182201001", ipk: 3.45, applyDate: "2023-10-10T09:00:00" },
+      { id: "2", name: "Siti Aminah", npm: "6182201045", ipk: 3.82, applyDate: "2023-10-12T14:30:00" },
+      { id: "3", name: "Andi Wijaya", npm: "6182201122", ipk: 3.20, applyDate: "2023-10-09T11:15:00" },
+      { id: "4", name: "Budi Santoso", npm: "6182201001", ipk: 3.45, applyDate: "2023-10-10T09:00:00" },
+      { id: "5", name: "Siti Aminah", npm: "6182201045", ipk: 3.82, applyDate: "2023-10-12T14:30:00" },
+      { id: "6", name: "Andi Wijaya", npm: "6182201122", ipk: 3.20, applyDate: "2023-10-09T11:15:00" },
+      { id: "7", name: "Budi Santoso", npm: "6182201001", ipk: 3.45, applyDate: "2023-10-10T09:00:00" },
+      { id: "8", name: "Budi Santoso", npm: "6182201001", ipk: 3.45, applyDate: "2023-10-10T09:00:00" },
+      { id: "9", name: "Siti Aminah", npm: "6182201045", ipk: 3.82, applyDate: "2023-10-12T14:30:00" },
+      { id: "10", name: "Andi Wijaya", npm: "6182201122", ipk: 3.20, applyDate: "2023-10-09T11:15:00" },
+      { id: "11", name: "Andi Wijaya", npm: "6182201122", ipk: 3.20, applyDate: "2023-10-09T11:15:00" },
+      { id: "12", name: "Siti Aminah", npm: "6182201045", ipk: 3.82, applyDate: "2023-10-12T14:30:00" },
+      { id: "13", name: "Budi Santoso", npm: "6182201001", ipk: 3.45, applyDate: "2023-10-10T09:00:00" },
+      { id: "14", name: "Siti Aminah", npm: "6182201045", ipk: 3.82, applyDate: "2023-10-12T14:30:00" },
+      { id: "15", name: "Andi Wijaya", npm: "6182201122", ipk: 3.20, applyDate: "2023-10-09T11:15:00" },
+    ]
+  },
+  {
+    id: "3",
+    code: "FR03",
+    title: "Analisis Sentimen Menggunakan NLP Transformer",
+    lecturerCode: "DR",
+    hasNotes: true,
+    status: "taken",
+    queueCount: 4,
+  },
+  {
+    id: "4",
+    code: "FR04",
+    title: "Rancang Bangun Aplikasi E-Commerce Microservices",
+    lecturerCode: "DR",
+    hasNotes: false,
+    status: "taken",
+    queueCount: 5,
+  },
+];

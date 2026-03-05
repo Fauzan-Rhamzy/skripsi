@@ -25,7 +25,7 @@ export const topics: Topic[] = [
     title: "Analisis Sentimen Menggunakan NLP Transformer",
     lecturerCode: "DR",
     hasNotes: true,
-    status: "selected",
+    status: "taken",
     queueCount: 4,
   },
   {

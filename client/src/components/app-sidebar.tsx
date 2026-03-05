@@ -1,6 +1,6 @@
 import * as React from "react";
 import { NavLink } from "react-router-dom";
-import { List, Upload, LogOut, CircleQuestionMarkIcon } from "lucide-react"; // Using icons for a nice touch
+import { LogOut } from "lucide-react"; // Using icons for a nice touch
 
 import {
   Sidebar,
@@ -17,26 +17,15 @@ import {
 
 import logo_informatika from "../assets/logo_informatika.png";
 
-// This is sample data.
-const studentNav = [
-  {
-    title: "Dashboard",
-    href: "/m",
-    icon: List,
-  },
-  {
-    title: "Upload DPS",
-    href: "/m/dps",
-    icon: Upload,
-  },
-  {
-    title: "FAQ",
-    href: "/m/faq",
-    icon: CircleQuestionMarkIcon,
-  },
-];
+import { navigationConfig, type UserRole } from "@/config/navigation";
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+// This is sample data.
+
+export function AppSidebar({
+  role,
+  ...props
+}: { role: UserRole } & React.ComponentProps<typeof Sidebar>) {
+  const sidebarNav = navigationConfig[role];
   return (
     <Sidebar {...props}>
       <div className="flex h-full flex-col">
@@ -57,7 +46,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarGroup>
             <SidebarGroupContent>
               <SidebarMenu>
-                {studentNav.map((item) => (
+                {sidebarNav.map((item) => (
                   <SidebarMenuItem key={item.title}>
                     <NavLink
                       to={item.href}

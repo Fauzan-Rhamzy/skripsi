@@ -1,63 +1,44 @@
 import { TableRow, TableCell } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { PickTopicDialog } from "./PickTopicDialog";
 
 import type { Topic } from "../types.ts";
 
-const renderAction = (topic: Topic, onSelectTopic: (topic: Topic) => void) => {
+const renderAction = (topic: Topic) => {
   switch (topic.status) {
     case "available":
       return (
-        <PickTopicDialog
-          topicTitle={topic.title}
-          onConfirm={() => onSelectTopic(topic)}
-        />
-        // <Button
-        //   size="sm"
-        //   className="w-full bg-green-600 hover:bg-green-800 font-bold border-2 transition-all hover:cursor-pointer"
-        // >
-        //   Ambil
-        // </Button>
+        <Badge
+          variant="outline"
+          className="w-full justify-center py-1.5 bg-green-200 text-green-900 border-green-900 font-black"
+        >
+          Tersedia
+        </Badge>
       );
     case "queued":
       return (
         <Badge
           variant="outline"
-          className="w-full justify-center py-1.5 bg-blue-50 text-blue-700 border-blue-200"
+          className="w-full justify-center py-1.5 bg-blue-200 text-blue-900 border-blue-900 font-black"
         >
-          Dalam Antrean
-        </Badge>
-      );
-    case "selected":
-      return (
-        <Badge className="w-full justify-center py-1.5 bg-blue-600 hover:bg-blue-700 text-white shadow-md">
-          Terpilih
+          {`Antrean: ${topic.queueCount}`}
         </Badge>
       );
     case "taken":
       return (
-        <Button
-          disabled
-          size="sm"
-          variant="secondary"
-          className="w-full bg-gray-200 text-gray-500 border border-gray-300"
+        <Badge
+          variant="outline"
+          className="w-full justify-center py-1.5 bg-red-200 text-red-900 border-red-900 font-black"
         >
           Diambil
-        </Button>
+        </Badge>
       );
     default:
       return null;
   }
 };
 
-function TopicTableRow({
-  topic,
-  onSelectTopic,
-}: {
-  topic: Topic;
-  onSelectTopic: (topic: Topic) => void;
-}) {
+function TopicTableRow({ topic }: { topic: Topic }) {
   return (
     <>
       <TableRow key={topic.id} className="hover:bg-slate-50">
@@ -91,9 +72,7 @@ function TopicTableRow({
           )}
         </TableCell>
 
-        <TableCell className="p-3 border-r">
-          {renderAction(topic, onSelectTopic)}
-        </TableCell>
+        <TableCell className="p-3 border-r">{renderAction(topic)}</TableCell>
 
         <TableCell className="text-center font-bold text-slate-700">
           {topic.queueCount}
