@@ -5,7 +5,7 @@ import StudentDashboardPage from "./pages/mahasiswa/dashboard/StudentDashboardPa
 import StudentUploadDPSPage from "./pages/mahasiswa/StudentUploadDPSPage";
 import KoordinatorDashboardPage from "./pages/koordinator/KoordinatorDashboardPage";
 import DosenDashboardPage from "./pages/dosen/dashboard/DosenDashboardPage";
-import DosenTopikSayaPage from "./pages/dosen/topikSaya/DosenTopikSayaPage";
+import DosenTopikSayaPage from "./pages/dosen/kelolaTopik/DosenKelolaTopikPage";
 import DosenHasilReviewPage from "./pages/dosen/hasilReview/DosenHasilReviewPage";
 import StudentFAQPage from "./pages/mahasiswa/StudentFAQPage";
 import MainLayout from "./components/MainLayout";

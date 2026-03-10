@@ -34,7 +34,7 @@ function DosenDashboardPage() {
           {/* <SelectTrigger className="h-auto border-20 border-blue-400 bg-blue-400 w-fit text-3xl font-black text-slate-900 "> */}
           <SelectTrigger
             className="flex h-auto w-fit max-w-[90vw] items-center gap-2 sm:gap-3 rounded-md border border-l-3 sm:border-l-5 border-blue-600 bg-white px-3
-     sm:px-5 py-2 text-xl sm:text-2xl font-black text-slate-900 shadow-sm transition-all hover:bg-slate-50 hover:border-l-6 sm:hover:border-l-10"
+     sm:px-5 py-2 text-xl sm:text-2xl font-black text-slate-900 shadow-sm transition-all hover:bg-slate-50 hover:border-l-6 sm:hover:border-l-10 hover:cursor-pointer"
           >
             <SelectValue placeholder="Pilih Semester" />
           </SelectTrigger>

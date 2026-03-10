@@ -16,23 +16,8 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useState } from "react";
 
-import { useEditor, EditorContent } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
-import Image from "@tiptap/extension-image";
-// import { EditorToolbar } from "./Tiptap.tsx";
-
 function AddTopicDialog() {
   const [contentType, setContentType] = useState("pdf");
-  const editor = useEditor({
-    extensions: [StarterKit, Image],
-    content: "<p>Tulis deskripsi topik di sini...</p>",
-    editorProps: {
-      attributes: {
-        class:
-          "prose prose-slate focus:outline-none max-w-none min-h-[200px] p-4",
-      },
-    },
-  });
 
   return (
     <>

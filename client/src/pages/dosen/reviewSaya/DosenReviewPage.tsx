@@ -25,7 +25,7 @@ function DosenReviewPage() {
         <section className="space-y-6">
           <div>
             Catatan Dosen:
-            <p>{topics.note}</p>
+            {/* <p>{topics.note}</p> */}
           </div>
           <div>
             <Label className="font-bold">Status Review</Label>

@@ -32,11 +32,6 @@ export const navigationConfig = {
             icon: BookOpen,
         },
         {            
-            title: "History Topik",
-            href: "/d/history",
-            icon: History,
-        },
-        {            
             title: "Review Saya",
             href: "/d/review",
             icon: ClipboardCheck,

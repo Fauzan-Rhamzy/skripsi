@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Edit2, Trash2 } from "lucide-react";
 
 import { DeleteTopicDialog } from "./DeleteTopicDialog.tsx";
-import QueueDialog from "./QueueDialog";
+import QueueDialog from "./QueueDialog.tsx";
 import type { Topic } from "../types.ts";
 import { Link } from "react-router-dom";
 
@@ -82,10 +82,6 @@ function TopicTableRow({ topic }: { topic: Topic }) {
           )}
         </TableCell>
 
-        <TableCell className="text-center border-r font-bold text-slate-700">
-          {topic.queueCount}
-        </TableCell>
-
         <TableCell className="text-center font-bold text-slate-700">
           <div className="flex items-center justify-center gap-1.5">
             <Button
@@ -104,13 +100,6 @@ function TopicTableRow({ topic }: { topic: Topic }) {
               <Edit2 className="h-4 w-4" />
             </Button>
             <DeleteTopicDialog topicTitle={topic.title} />
-            {/* <Button
-            variant="outline"
-            size="icon"
-            className="h-7 w-8 text-red-500 hover:text-red-600 hover:bg-red-50 hover:cursor-pointer"
-          >
-            <Trash2 className="h-4 w-4" />
-          </Button> */}
           </div>
         </TableCell>
       </TableRow>

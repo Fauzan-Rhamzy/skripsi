@@ -14,7 +14,8 @@ import {
 } from "@/components/ui/select";
 
 import { Button } from "@/components/ui/button";
-import TopicTableRow from "./components/TopicTableRow";
+import LecturerTopicTableRow from "./components/LecturerTopicTableRow";
+import StudentTopicTableRow from "./components/StudentTopicTableRow";
 
 import AddTopicDialog from "./components/AddTopicDialog";
 import { topics } from "./mockData";
@@ -31,7 +32,7 @@ function DosenTopikSayaPage() {
     <div className="p-8">
       <div className="mb-6">
         <Select defaultValue="ganjil-25-26">
-          <SelectTrigger className="flex h-auto w-fit max-w-[90vw] items-center gap-2 sm:gap-3 rounded-md border border-l-3 sm:border-l-5 border-blue-600 bg-white px-3 sm:px-5 py-2 text-xl sm:text-2xl font-black text-slate-900 shadow-sm transition-all hover:bg-slate-50 hover:border-l-6 sm:hover:border-l-10">
+          <SelectTrigger className="flex h-auto w-fit max-w-[90vw] items-center gap-2 sm:gap-3 rounded-md border border-l-3 sm:border-l-5 border-blue-600 bg-white px-3 sm:px-5 py-2 text-xl sm:text-2xl font-black text-slate-900 shadow-sm transition-all hover:bg-slate-50 hover:border-l-6 sm:hover:border-l-10 hover:cursor-pointer">
             <SelectValue placeholder="Pilih Semester" />
           </SelectTrigger>
           <SelectContent>
@@ -77,9 +78,6 @@ function DosenTopikSayaPage() {
               <TableHead className="w-40 font-bold text-slate-900 text-center border-r">
                 Status
               </TableHead>
-              <TableHead className="w-20 font-bold text-slate-900 text-center border-r">
-                Antrean
-              </TableHead>
               <TableHead className="w-60 font-bold text-slate-900 text-center">
                 Aksi
               </TableHead>
@@ -87,7 +85,7 @@ function DosenTopikSayaPage() {
           </TableHeader>
           <TableBody>
             {topics.map((topic) => (
-              <TopicTableRow key={topic.id} topic={topic} />
+              <LecturerTopicTableRow key={topic.id} topic={topic} />
             ))}
           </TableBody>
         </Table>
@@ -122,10 +120,7 @@ function DosenTopikSayaPage() {
                 Catatan
               </TableHead>
               <TableHead className="w-40 font-bold text-slate-900 text-center border-r">
-                Status
-              </TableHead>
-              <TableHead className="w-20 font-bold text-slate-900 text-center border-r">
-                Antrean
+                Mahasiswa
               </TableHead>
               <TableHead className="w-60 font-bold text-slate-900 text-center">
                 Aksi
@@ -134,7 +129,7 @@ function DosenTopikSayaPage() {
           </TableHeader>
           <TableBody>
             {topics.map((topic) => (
-              <TopicTableRow key={topic.id} topic={topic} />
+              <StudentTopicTableRow key={topic.id} topic={topic} />
             ))}
           </TableBody>
         </Table>
