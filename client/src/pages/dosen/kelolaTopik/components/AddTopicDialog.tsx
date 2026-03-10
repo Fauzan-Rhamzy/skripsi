@@ -28,7 +28,7 @@ function AddTopicDialog() {
           </Button>
         </DialogTrigger>
         <DialogContent
-          className={`${contentType === "text" ? "max-w-4xl" : "max-w-2xl"} transition-all duration-300`}
+          className={`${contentType === "text" ? "sm:max-w-[95vw] sm:h-[95vh]" : "sm:max-w-2xl"} transition-all duration-300`}
         >
           <DialogHeader className="pb-4 border-b">
             <DialogTitle className="text-2xl font-black text-slate-900">
