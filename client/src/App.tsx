@@ -11,38 +11,41 @@ import StudentFAQPage from "./pages/mahasiswa/StudentFAQPage";
 import MainLayout from "./components/MainLayout";
 import DosenReviewList from "./pages/dosen/reviewSaya/DosenReviewList";
 import DosenReviewPage from "./pages/dosen/reviewSaya/DosenReviewPage";
+import { TooltipProvider } from "./components/ui/tooltip";
 
 // import DashboardLayout from "./layouts/DashboardLayout";
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Navigate to="/login" replace />} />
-          <Route path="/login" element={<LoginPage />} />
+      <TooltipProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Navigate to="/login" replace />} />
+            <Route path="/login" element={<LoginPage />} />
 
-          <Route path="/m" element={<MainLayout role={"student"} />}>
-            <Route index element={<StudentDashboardPage />} />
-            <Route path="dps" element={<StudentUploadDPSPage />} />
-            <Route path="faq" element={<StudentFAQPage />} />
-          </Route>
+            <Route path="/m" element={<MainLayout role={"student"} />}>
+              <Route index element={<StudentDashboardPage />} />
+              <Route path="dps" element={<StudentUploadDPSPage />} />
+              <Route path="faq" element={<StudentFAQPage />} />
+            </Route>
 
-          <Route path="/d" element={<MainLayout role="lecturer" />}>
-            <Route index element={<DosenDashboardPage />} />
-            <Route path="topik-saya" element={<DosenTopikSayaPage />} />
-            <Route path="review" element={<DosenReviewList />} />
-            <Route path="review/1" element={<DosenReviewPage />} />
-            <Route
-              path="topik-saya/reviews"
-              element={<DosenHasilReviewPage />}
-            />
-          </Route>
+            <Route path="/d" element={<MainLayout role="lecturer" />}>
+              <Route index element={<DosenDashboardPage />} />
+              <Route path="topik-saya" element={<DosenTopikSayaPage />} />
+              <Route path="review" element={<DosenReviewList />} />
+              <Route path="review/1" element={<DosenReviewPage />} />
+              <Route
+                path="topik-saya/reviews"
+                element={<DosenHasilReviewPage />}
+              />
+            </Route>
 
-          <Route path="k" element={<MainLayout role="coordinator" />}>
-            <Route index element={<KoordinatorDashboardPage />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+            <Route path="k" element={<MainLayout role="coordinator" />}>
+              <Route index element={<KoordinatorDashboardPage />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
     </>
   );
 }
