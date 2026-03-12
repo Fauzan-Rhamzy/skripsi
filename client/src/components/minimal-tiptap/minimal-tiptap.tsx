@@ -10,6 +10,7 @@ import { SectionTwo } from "./components/section/two"
 import { SectionThree } from "./components/section/three"
 import { SectionFour } from "./components/section/four"
 import { SectionFive } from "./components/section/five"
+import { SectionSix } from "./components/section/six"
 import { LinkBubbleMenu } from "./components/bubble-menu/link-bubble-menu"
 import { useMinimalTiptapEditor } from "./hooks/use-minimal-tiptap"
 import { MeasuredContainer } from "./components/measured-container"
@@ -44,6 +45,10 @@ const Toolbar = ({ editor }: { editor: Editor }) => (
         ]}
         mainActionCount={3}
       />
+
+      <Separator orientation="vertical" className="mx-2" />
+
+      <SectionSix editor={editor} />
 
       <Separator orientation="vertical" className="mx-2" />
 
