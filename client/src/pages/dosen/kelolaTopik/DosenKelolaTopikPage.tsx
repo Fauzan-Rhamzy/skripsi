@@ -17,7 +17,7 @@ import { Button } from "@/components/ui/button";
 import LecturerTopicTableRow from "./components/LecturerTopicTableRow";
 import StudentTopicTableRow from "./components/StudentTopicTableRow";
 
-import AddTopicDialog from "./components/AddTopicDialog";
+import AddTopicDialog from "./components/TopicFormDialog";
 import { topics } from "./mockData";
 
 import { useEffect } from "react";

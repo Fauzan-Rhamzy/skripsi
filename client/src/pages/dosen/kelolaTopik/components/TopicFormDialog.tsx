@@ -49,7 +49,7 @@ function AddTopicDialog() {
           </Button>
         </DialogTrigger>
         <DialogContent
-          className={`${contentType === "text" ? "sm:max-w-5xl sm:h-[90vh]" : "sm:max-w-2xl"} flex flex-col p-0 overflow-hidden transition-all duration-300`}
+          className={`${contentType === "text" ? "w-[95vw] h-[95vh] sm:max-w-5xl" : "w-[95vw] h-auto max-h-[95vh] sm:max-w-2xl"} flex flex-col p-0 overflow-hidden transition-all duration-300`}
           showCloseButton={false}
           onPointerDownOutside={(e) => e.preventDefault()}
         >
@@ -144,7 +144,7 @@ function AddTopicDialog() {
                   </div>
                 ) : (
                   // text editor
-                  <div className="flex flex-col h-[500px]">
+                  <div className="flex flex-col h-[300px] sm:h-[500px]">
                     <MinimalTiptapEditor
                       value={editorValue}
                       onChange={setEditorValue}
