@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FileUp, FileText, CheckCircle2, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,16 +14,24 @@ export default function StudentUploadDPSPage() {
   const [isUploading, setIsUploading] = useState(false);
   const [extractedIPK, setExtractedIPK] = useState<number | null>(null);
 
+  useEffect(() => {
+    const savedIPK = "2.5";
+    if (savedIPK) {
+      setExtractedIPK(parseFloat(savedIPK));
+    }
+  }, []);
+
   const handleUpload = () => {
     setIsUploading(true);
     setTimeout(() => {
       setIsUploading(false);
       setExtractedIPK(3.75);
+      setFile(null);
     }, 2000);
   };
 
   return (
-    <div className="p-8 max-w-4xl mx-auto">
+    <div className="p-8 max-w-4xl mx-auto shrink-0">
       <div className="mb-8">
         <h1 className="text-3xl font-black tracking-tight text-slate-900">
           Upload DPS
@@ -34,19 +42,20 @@ export default function StudentUploadDPSPage() {
         </p>
       </div>
       {extractedIPK && (
-        <Card className="flex items-center justify-between p-4 bg-green-50 border border-green-200 rounded-lg">
+        <Card className="flex items-center justify-between p-4 bg-green-50 border border-green-200 rounded-lg mb-5 shrink-0">
           <div className="flex items-center gap-3">
             <div className="bg-green-100 p-2 rounded-full">
               <CheckCircle2 className="h-5 w-5 text-green-600" />
             </div>
             <div>
-              <p className="text-sm font-semibold text-green-900">
-                Data Berhasil Diperbarui
-              </p>
-              <p className="text-xs text-green-700">
+              <p className="text-m font-semibold text-green-900">
                 IPK Anda saat ini tercatat sebagai{" "}
                 <strong>{extractedIPK}</strong>
               </p>
+              {/* <p className="text-xs text-green-700">
+                IPK Anda saat ini tercatat sebagai{" "}
+                <strong>{extractedIPK}</strong>
+              </p> */}
             </div>
           </div>
           {/* <Button
@@ -79,18 +88,14 @@ export default function StudentUploadDPSPage() {
         </div> */}
 
         {/* upload file */}
-        <Card className="border-2 border-dashed border-slate-200 shadow-none">
-          <CardContent className="flex flex-col items-center justify-center py-12">
+        <Card className=" shadow-none">
+          <CardContent className="flex flex-col items-center justify-center p-1">
             {!file ? (
               <>
-                <div className="h-16 w-16 bg-slate-100 rounded-full flex items-center justify-center mb-4">
+                <div>
                   <FileUp className="h-8 w-8 text-slate-400" />
                 </div>
-                <div className="text-center">
-                  <p className="text-sm text-muted-foreground">
-                    PDF (Maks. 5MB)
-                  </p>
-                </div>
+                <div className="text-center"></div>
                 <input
                   type="file"
                   className="hidden"
@@ -106,15 +111,15 @@ export default function StudentUploadDPSPage() {
               </>
             ) : (
               <div className="w-full max-w-sm">
-                <div className="flex items-center gap-4 p-4 bg-slate-50 rounded-lg border border-slate-200 mb-6">
-                  <FileText className="h-10 w-10 text-blue-600" />
+                <div className="flex items-center gap-4 p-4 bg-slate-50 rounded-lg border border-slate-200 mb-6 w-80 overflow-hidden mx-auto">
+                  <FileText className="h-10 w-10 text-blue-600 shrink-0" />
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium truncate">{file.name}</p>
-                    <p className="text-xs text-muted-foreground">
+                    {/* <p className="text-xs text-muted-foreground">
                       {(file.size / 1024 / 1024).toFixed(2)} MB
-                    </p>
+                    </p> */}
                   </div>
-                  <CheckCircle2 className="h-5 w-5 text-green-500" />
+                  <CheckCircle2 className="h-5 w-5 text-green-500 shrink-0" />
                 </div>
 
                 <div className="flex gap-3">

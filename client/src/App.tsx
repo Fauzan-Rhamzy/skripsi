@@ -12,6 +12,7 @@ import MainLayout from "./components/MainLayout";
 import DosenReviewList from "./pages/dosen/reviewSaya/DosenReviewList";
 import DosenReviewPage from "./pages/dosen/reviewSaya/DosenReviewPage";
 import { TooltipProvider } from "./components/ui/tooltip";
+import TopicDetailPage from "./pages/shared/TopicDetailPage";
 
 // import DashboardLayout from "./layouts/DashboardLayout";
 function App() {
@@ -43,6 +44,8 @@ function App() {
             <Route path="k" element={<MainLayout role="coordinator" />}>
               <Route index element={<KoordinatorDashboardPage />} />
             </Route>
+
+            <Route path="/topic/:id" element={<TopicDetailPage />} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>

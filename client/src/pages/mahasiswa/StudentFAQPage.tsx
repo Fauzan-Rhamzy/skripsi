@@ -20,19 +20,19 @@ export default function StudentFAQPage() {
   ];
 
   return (
-    <div className="p-8 max-w-3xl mx-auto">
+    <div className="p-8 max-w-3xl mx-auto w-full">
       <h1 className="text-3xl font-black mb-8">
         Pertanyaan Sering Diajukan (FAQ)
       </h1>
 
       <Accordion type="single" collapsible className="w-full">
         {faqs.map((faq, index) => (
-          <AccordionItem key={index} value={`item-${index}`}>
-            <AccordionTrigger className="text-left font-semibold">
+          <AccordionItem key={index} value={`item-${index}`} className="w-full">
+            <AccordionTrigger className="text-left font-semibold w-full hover:cursor-pointer">
               {faq.question}
             </AccordionTrigger>
-            <AccordionContent className="text-slate-600 leading-relaxed">
-              {faq.answer}
+            <AccordionContent className="text-slate-600 leading-relaxed w-full overflow-hidden">
+              <div className="pr-4">{faq.answer}</div>
             </AccordionContent>
           </AccordionItem>
         ))}

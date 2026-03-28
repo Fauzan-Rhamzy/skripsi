@@ -2,6 +2,7 @@ import { TableRow, TableCell } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { PickTopicDialog } from "./PickTopicDialog";
+import { TopicNotesDialog } from "@/components/TopicNotesDialog.tsx";
 
 import type { Topic } from "../types.ts";
 
@@ -70,8 +71,16 @@ function TopicTableRow({
         </TableCell>
 
         <TableCell className="text-center border-r">
-          <a
+          {/* <a
             href="#"
+            className="text-sm font-semibold text-blue-600 hover:underline flex items-center justify-center gap-1"
+          >
+            Lihat Topik
+          </a> */}
+          <a
+            href={`/topic/${topic.id}`}
+            target="_blank"
+            rel="noreferrer"
             className="text-sm font-semibold text-blue-600 hover:underline flex items-center justify-center gap-1"
           >
             Lihat Topik
@@ -79,13 +88,20 @@ function TopicTableRow({
         </TableCell>
 
         <TableCell className="text-center border-r">
-          {topic.hasNotes ? (
+          {/* {topic.hasNotes ? (
             <a
               href="#"
               className="text-sm font-semibold text-blue-600 hover:underline flex items-center justify-center gap-1"
             >
               Lihat Catatan
             </a>
+          ) : (
+            <span className="text-gray-300">-</span>
+          )} */}
+          {topic.hasNotes ? (
+            <div className="flex items-center justify-center gap-1">
+              <TopicNotesDialog title={topic.title} notes="contoh catatan" />
+            </div>
           ) : (
             <span className="text-gray-300">-</span>
           )}

@@ -7,13 +7,9 @@ import {
 } from "@/components/ui/table";
 import TopicTableRow from "./components/TopicTableRow";
 
-import { topics } from "./mockData";
+import { topics as mockTopics } from "./mockData";
 import type { Topic } from "./types";
-import { useEffect } from "react";
-
-const handleSelectTopic = (topic: Topic) => {
-  console.log("Topik: ", topic);
-};
+import { useState, useEffect } from "react";
 
 export default function StudentDashboardPage() {
   useEffect(() => {
@@ -21,6 +17,17 @@ export default function StudentDashboardPage() {
     // const topics = mockTopics;
   }, []);
 
+  const [localTopics, setLocalTopics] = useState<Topic[]>(mockTopics);
+  const handleSelectTopic = (topic: Topic) => {
+    setLocalTopics((prev) =>
+      prev.map((t) =>
+        t.id === topic.id
+          ? { ...t, status: "queued" as const, queueCount: t.queueCount + 1 }
+          : t,
+      ),
+    );
+    console.log(`dipilih: ${topic.id}`);
+  };
   return (
     <div className="p-8">
       <div className="mb-6">
@@ -60,7 +67,7 @@ export default function StudentDashboardPage() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {topics.map((topic) => (
+            {localTopics.map((topic) => (
               <TopicTableRow
                 key={topic.id}
                 topic={topic}

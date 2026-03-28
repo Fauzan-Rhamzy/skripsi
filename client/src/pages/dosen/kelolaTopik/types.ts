@@ -5,7 +5,8 @@ export interface Topic {
   lecturerCode: string;
   hasNotes: boolean;
   status: 'available'|'queued'|'selected'|'taken';
-  queueCount: number;
+  taker?: string;
+  queueCount?: number;
   students?: StudentInQueue[];
 }
 

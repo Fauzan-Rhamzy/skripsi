@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 import type { Topic } from "../types.ts";
+import { TopicNotesDialog } from "@/components/TopicNotesDialog.tsx";
 
 const renderAction = (topic: Topic) => {
   switch (topic.status) {
@@ -52,7 +53,9 @@ function TopicTableRow({ topic }: { topic: Topic }) {
 
         <TableCell className="text-center border-r">
           <a
-            href="#"
+            href={`/topic/${topic.id}`}
+            target="_blank"
+            rel="noreferrer"
             className="text-sm font-semibold text-blue-600 hover:underline flex items-center justify-center gap-1"
           >
             Lihat Topik
@@ -61,12 +64,9 @@ function TopicTableRow({ topic }: { topic: Topic }) {
 
         <TableCell className="text-center border-r">
           {topic.hasNotes ? (
-            <a
-              href="#"
-              className="text-sm font-semibold text-blue-600 hover:underline flex items-center justify-center gap-1"
-            >
-              Lihat Catatan
-            </a>
+            <div className="flex items-center justify-center gap-1">
+              <TopicNotesDialog title={topic.title} notes="contoh catatan" />
+            </div>
           ) : (
             <span className="text-gray-300">-</span>
           )}

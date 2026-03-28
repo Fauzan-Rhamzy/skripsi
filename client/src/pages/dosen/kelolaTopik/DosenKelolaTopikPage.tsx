@@ -17,8 +17,10 @@ import { Button } from "@/components/ui/button";
 import LecturerTopicTableRow from "./components/LecturerTopicTableRow";
 import StudentTopicTableRow from "./components/StudentTopicTableRow";
 
-import AddTopicDialog from "./components/TopicFormDialog";
+import LecturerTopicFormDialog from "./components/LecturerTopicFormDialog";
+import StudentTopicFormDialog from "./components/StudentTopicFormDialog";
 import { topics } from "./mockData";
+import { studentTopics } from "./mockData";
 
 import { useEffect } from "react";
 import { Plus } from "lucide-react";
@@ -55,7 +57,7 @@ function DosenTopikSayaPage() {
             <Plus className="mr-2 h-5 w-5" />
             Tambah Topik
           </Button> */}
-          <AddTopicDialog />
+          <LecturerTopicFormDialog type="newTopic" />
         </div>
       </div>
 
@@ -96,11 +98,7 @@ function DosenTopikSayaPage() {
           <h2 className="text-2xl font-black text-slate-900 border-l-4 border-blue-600 pl-4">
             USULAN MAHASISWA
           </h2>
-
-          <Button className="h-9 px-6 bg-green-600 hover:bg-green-700 font-bold shadow-md hover:cursor-pointer">
-            <Plus className="mr-2 h-5 w-5" />
-            Tambah Topik
-          </Button>
+          <StudentTopicFormDialog type="newTopic" />{" "}
         </div>
       </div>
       <div className="rounded-md border border-slate-200 bg-white shadow-sm overflow-hidden">
@@ -116,9 +114,6 @@ function DosenTopikSayaPage() {
               <TableHead className="w-30 font-bold text-slate-900 text-center border-r">
                 Topik
               </TableHead>
-              <TableHead className="w-32.5 font-bold text-slate-900 text-center border-r">
-                Catatan
-              </TableHead>
               <TableHead className="w-40 font-bold text-slate-900 text-center border-r">
                 Mahasiswa
               </TableHead>
@@ -128,7 +123,7 @@ function DosenTopikSayaPage() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {topics.map((topic) => (
+            {studentTopics.map((topic) => (
               <StudentTopicTableRow key={topic.id} topic={topic} />
             ))}
           </TableBody>
