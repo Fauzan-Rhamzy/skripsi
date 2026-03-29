@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { topics } from "../mahasiswa/dashboard/mockData";
 import { FileText, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -41,9 +41,12 @@ function TopicDetailPage() {
   return (
     <div className="min-h-screen bg-slate-50 pb-20">
       {/* header */}
-      <div className="bg-white border-b sticky top-0 z-10 shadow-sm">
-        <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="bg-white border-b z-10 shadow-sm">
+        <div className="max-w-5xl px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-4">
+            <Link to="/d/review">
+              <ArrowLeft strokeWidth={3} className="h-5 w-5" />
+            </Link>
             <div className="bg-blue-600 p-2 rounded-lg text-white">
               <FileText className="h-5 w-5" />
             </div>

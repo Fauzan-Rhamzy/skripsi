@@ -70,16 +70,29 @@ const dummyJsonContent = {
   ],
 };
 
-function DosenReviewPage() {
-  const navigate = useNavigate();
+function DosenReviewPage({ reviewPhase }: { reviewPhase?: number }) {
+  const [reviewStatus, setReviewPhase] = useState("");
   const [editorValue, setEditorValue] = useState<Content>("");
-  const { topicCode, reviewPhase } = useParams();
+  const navigate = useNavigate();
+  const { topicCode } = useParams();
   const topic = topics.find((t) => t.code === topicCode);
 
   const handleSave = () => {
-    console.log("Saving JSON data:", editorValue);
-    // 1. Send to API here
-    // 2. navigate("/d/review");
+    if (!reviewStatus) {
+      alert("Silahkan pilih status review terlebih dahulu.");
+      return;
+    }
+
+    const reviewData = {
+      topicCode,
+      phase: reviewPhase,
+      commentJson: editorValue,
+      status: reviewStatus,
+    };
+
+    console.log("Submitting Review:", reviewData);
+    alert("Review Berhasil Disimpan!");
+    navigate("/d/review");
   };
 
   return (
@@ -99,9 +112,9 @@ function DosenReviewPage() {
             </Button>
             <div>
               <h1 className="text-2xl font-black">
-                Review: {topicCode || "FR01ACS"}
+                Review: {topicCode || "Kode topik"}
               </h1>
-              <p className="text-m text-blue-600">Tahap 1{reviewPhase}</p>
+              <p className="text-m text-blue-600">Tahap {reviewPhase}</p>
             </div>
           </div>
 
@@ -150,7 +163,7 @@ function DosenReviewPage() {
           {/* status review */}
           <div>
             <Label className="font-bold mb-2">Status Review</Label>
-            <Select defaultValue="">
+            <Select defaultValue="" onValueChange={setReviewPhase}>
               <SelectTrigger className="">
                 <SelectValue placeholder="Pilih Status Review" />
               </SelectTrigger>

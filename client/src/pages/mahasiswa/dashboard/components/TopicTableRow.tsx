@@ -5,6 +5,7 @@ import { PickTopicDialog } from "./PickTopicDialog";
 import { TopicNotesDialog } from "@/components/TopicNotesDialog.tsx";
 
 import type { Topic } from "../types.ts";
+import { Link } from "react-router-dom";
 
 const renderAction = (topic: Topic, onSelectTopic: (topic: Topic) => void) => {
   switch (topic.status) {
@@ -77,14 +78,12 @@ function TopicTableRow({
           >
             Lihat Topik
           </a> */}
-          <a
-            href={`/topic/${topic.id}`}
-            target="_blank"
-            rel="noreferrer"
+          <Link
+            to={`./topic/${topic.id}`}
             className="text-sm font-semibold text-blue-600 hover:underline flex items-center justify-center gap-1"
           >
             Lihat Topik
-          </a>
+          </Link>
         </TableCell>
 
         <TableCell className="text-center border-r">

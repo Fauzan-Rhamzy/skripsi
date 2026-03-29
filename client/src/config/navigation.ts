@@ -1,4 +1,4 @@
-import { List, Upload, CircleQuestionMarkIcon, LayoutGrid, Globe, BookOpen, FileText, History, ClipboardCheck } from "lucide-react";
+import { List, Upload, CircleQuestionMarkIcon, LayoutGrid, Globe, BookOpen, FileText, History, ClipboardCheck, Users, Eye, CalendarCog, UserCog } from "lucide-react";
 
 export type UserRole = 'student' | 'lecturer' | 'coordinator';
 
@@ -40,9 +40,29 @@ export const navigationConfig = {
     ],
     coordinator: [
         {            
-            title: "Dashboard",
+            title: "Kelola Topik",
             href: "/k",
             icon: List,
+        },
+        {            
+            title: "Atur Reviewer",
+            href: "/k/atur-reviewer",
+            icon: Users,
+        },
+        {            
+            title: "Monitoring Review",
+            href: "/k/monitoring",
+            icon: Eye,
+        },
+        {            
+            title: "Manajemen Periode",
+            href: "/k/periode",
+            icon: CalendarCog,
+        },
+        {            
+            title: "Manajemen User",
+            href: "/k/users",
+            icon: UserCog,
         },
 
     ]

@@ -70,7 +70,7 @@ export default function DosenReviewList() {
                 </TableCell>
 
                 <TableCell className="text-center border-r">
-                  <Button asChild className="bg-green-500 hover:bg-green-600">
+                  {/* <Button asChild className="bg-green-500 hover:bg-green-600">
                     <Link
                       to="#"
                       className="text-sm font-semibold text-blue-600  flex items-center justify-center gap-1"
@@ -78,17 +78,25 @@ export default function DosenReviewList() {
                       <CheckCircle />
                       Review 1
                     </Link>
+                  </Button> */}
+                  <Button
+                    asChild
+                    className="bg-green-600 hover:bg-green-700 font-bold h-8"
+                  >
+                    <Link to={`/d/review/${topic.code}/1`}>
+                      {/* <Link to={`/d/review/${topic.code}/1`}> */}
+                      <CheckCircle className="h-4 w-4 mr-1" /> Review 1
+                    </Link>
                   </Button>
                 </TableCell>
 
                 <TableCell className="text-center border-r">
-                  <Button asChild className="bg-blue-500 hover:bg-blue-600">
-                    <Link
-                      to="#"
-                      className="text-sm font-semibold text-blue-600  flex items-center justify-center gap-1"
-                    >
-                      <Pencil />
-                      Review 2
+                  <Button
+                    asChild
+                    className="bg-blue-500 hover:bg-blue-600 font-bold h-8"
+                  >
+                    <Link to={`/d/review/${topic.code}/2`}>
+                      <Pencil className="h-4 w-4 mr-1" /> Review 2
                     </Link>
                   </Button>
                 </TableCell>
