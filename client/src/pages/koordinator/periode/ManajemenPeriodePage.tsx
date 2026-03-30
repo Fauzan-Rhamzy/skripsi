@@ -16,9 +16,9 @@ import SemesterFormDialog from "./components/SemesterFormDialog";
 import DeleteDialog from "./components/DeleteDialog";
 
 const initialSemesters = [
-  { id: "1", name: "Semester Ganjil 2025/2026", code: "60", isActive: true },
-  { id: "2", name: "Semester Genap 2024/2025", code: "59", isActive: false },
-  { id: "3", name: "Semester Ganjil 2024/2025", code: "58", isActive: false },
+  { id: "1", name: "Semester Genap 2025/2026", code: "60", isActive: true },
+  { id: "2", name: "Semester Ganjil 2025/2026", code: "59", isActive: false },
+  { id: "3", name: "Semester Genap 2024/2025", code: "58", isActive: false },
 ];
 
 const PHASES = [

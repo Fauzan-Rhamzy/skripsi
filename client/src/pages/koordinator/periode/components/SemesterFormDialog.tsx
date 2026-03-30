@@ -53,7 +53,8 @@ function SemesterFormDialog({ type, initialData, onSave }: Props) {
   const handleAction = () => {
     const periode = `${year}${term}`;
     const formattedName = `Semester ${term === "1" ? "Ganjil" : "Genap"} ${year}/${parseInt(year) + 1}`;
-    const customCode = parseInt(year) - 1966;
+    const customCode =
+      term === "1" ? parseInt(year) - 1965 : parseInt(year) - 1964;
     // if (!formData.name || !formData.code) {
     //   alert("Semua field wajib diisi!");
     //   return;
@@ -110,9 +111,10 @@ function SemesterFormDialog({ type, initialData, onSave }: Props) {
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
+                <SelectItem value="2027">2027</SelectItem>
                 <SelectItem value="2026">2026</SelectItem>
-                <SelectItem value="2024">2024</SelectItem>
-                <SelectItem value="2025">2025</SelectItem>
+                <SelectItem value="2024">2025</SelectItem>
+                <SelectItem value="2025">2024</SelectItem>
               </SelectContent>
             </Select>
           </div>
