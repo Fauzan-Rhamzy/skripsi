@@ -9,7 +9,13 @@ import StudentTopicFormDialog from "./StudentTopicFormDialog.tsx";
 import type { Topic } from "../types.ts";
 import { Link } from "react-router-dom";
 
-function TopicTableRow({ topic }: { topic: Topic }) {
+function TopicTableRow({
+  topic,
+  onSave,
+}: {
+  topic: Topic;
+  onSave: (data: any) => void;
+}) {
   return (
     <>
       <TableRow key={topic.id} className="hover:bg-slate-50">
@@ -19,14 +25,12 @@ function TopicTableRow({ topic }: { topic: Topic }) {
         <TableCell className="font-medium border-r">{topic.title}</TableCell>
 
         <TableCell className="text-center border-r">
-          <a
-            href={`/topic/${topic.id}`}
-            target="_blank"
-            rel="noreferrer"
+          <Link
+            to={`./topic/${topic.code}`}
             className="text-sm font-semibold text-blue-600 hover:underline flex items-center justify-center gap-1"
           >
             Lihat Topik
-          </a>
+          </Link>
         </TableCell>
 
         <TableCell className="p-3 border-r align-middle text-center">
@@ -45,7 +49,11 @@ function TopicTableRow({ topic }: { topic: Topic }) {
               <Link to="./reviews">Hasil Review</Link>
               {/* <Link to={./reviews/${topic.code}}> */}
             </Button>
-            <StudentTopicFormDialog type="editTopic" initialTopic={topic} />
+            <StudentTopicFormDialog
+              type="edit"
+              initialTopic={topic}
+              onSave={onSave}
+            />
             <DeleteTopicDialog topicTitle={topic.title} />
           </div>
         </TableCell>

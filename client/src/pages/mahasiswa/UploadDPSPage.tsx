@@ -15,10 +15,7 @@ export default function StudentUploadDPSPage() {
   const [extractedIPK, setExtractedIPK] = useState<number | null>(null);
 
   useEffect(() => {
-    const savedIPK = "2.5";
-    if (savedIPK) {
-      setExtractedIPK(parseFloat(savedIPK));
-    }
+    setExtractedIPK(2.5);
   }, []);
 
   const handleUpload = () => {
@@ -36,7 +33,7 @@ export default function StudentUploadDPSPage() {
         <h1 className="text-3xl font-black tracking-tight text-slate-900">
           Upload DPS
         </h1>
-        <p className="text-muted-foreground mt-2">
+        <p className="mt-2">
           Unggah file PDF Daftar Perkembangan Studi (DPS) Anda untuk memperbarui
           data IPK di sistem.
         </p>

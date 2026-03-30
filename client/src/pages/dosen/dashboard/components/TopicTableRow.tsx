@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 
 import type { Topic } from "../types.ts";
 import { TopicNotesDialog } from "@/components/TopicNotesDialog.tsx";
+import { Link } from "react-router-dom";
 
 const renderAction = (topic: Topic) => {
   switch (topic.status) {
@@ -52,14 +53,12 @@ function TopicTableRow({ topic }: { topic: Topic }) {
         </TableCell>
 
         <TableCell className="text-center border-r">
-          <a
-            href={`/topic/${topic.id}`}
-            target="_blank"
-            rel="noreferrer"
+          <Link
+            to={`./topic/${topic.code}`}
             className="text-sm font-semibold text-blue-600 hover:underline flex items-center justify-center gap-1"
           >
             Lihat Topik
-          </a>
+          </Link>
         </TableCell>
 
         <TableCell className="text-center border-r">

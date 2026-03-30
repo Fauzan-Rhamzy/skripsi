@@ -13,22 +13,66 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 
-import { Button } from "@/components/ui/button";
 import LecturerTopicTableRow from "./components/LecturerTopicTableRow";
 import StudentTopicTableRow from "./components/StudentTopicTableRow";
 
 import LecturerTopicFormDialog from "./components/LecturerTopicFormDialog";
 import StudentTopicFormDialog from "./components/StudentTopicFormDialog";
-import { topics } from "./mockData";
-import { studentTopics } from "./mockData";
+import { topics as mockData } from "./mockData";
+import { studentTopics as mockStudentTopics } from "./mockData";
 
-import { useEffect } from "react";
-import { Plus } from "lucide-react";
+import { useEffect, useState } from "react";
 function DosenTopikSayaPage() {
+  const [topics, setTopics] = useState(mockData);
+  const [studentTopics, setStudentTopics] = useState(mockStudentTopics);
   useEffect(() => {
     console.log("Ambil data semua topik yang dimiliki dosen di semester ini");
     // const topics = mockTopics;
   }, []);
+
+  const handleAddLecturerTopic = (newTopicData: any) => {
+    const newTopic = {
+      id: Date.now().toString(),
+      ...newTopicData,
+      status: "available",
+      queueCount: 0,
+      hasNotes: !!newTopicData.studentNotes,
+      lecturerCode: "FR",
+    };
+    console.log(newTopic);
+    setTopics([newTopic, ...topics]);
+  };
+
+  const handleAddStudentTopic = (newTopicData: any) => {
+    const newTopic = {
+      id: Date.now().toString(),
+      ...newTopicData,
+      status: "taken",
+      hasNotes: false,
+      lecturerCode: "FR",
+    };
+    setStudentTopics([newTopic, ...studentTopics]);
+  };
+
+  const handleEditLecturerTopic = (id: string, updatedData: any) => {
+    setTopics((prev) =>
+      prev.map((t) => (t.id === id ? { ...t, ...updatedData } : t)),
+    );
+  };
+
+  const handleEditStudentTopic = (id: string, updatedData: any) => {
+    setStudentTopics((prev) =>
+      prev.map((t) => (t.id === id ? { ...t, ...updatedData } : t)),
+    );
+  };
+
+  const handleDeleteLecturerTopic = (id: string, updatedData: any) => {
+    setTopics((prev) => prev.filter((t) => t.id !== id));
+  };
+
+  const handleDeleteStudentTopic = (id: string, updatedData: any) => {
+    setTopics((prev) => prev.filter((t) => t.id !== id));
+  };
 
   return (
     <div className="p-8">
@@ -57,7 +101,7 @@ function DosenTopikSayaPage() {
             <Plus className="mr-2 h-5 w-5" />
             Tambah Topik
           </Button> */}
-          <LecturerTopicFormDialog type="newTopic" />
+          <LecturerTopicFormDialog type="new" onSave={handleAddLecturerTopic} />
         </div>
       </div>
 
@@ -87,7 +131,11 @@ function DosenTopikSayaPage() {
           </TableHeader>
           <TableBody>
             {topics.map((topic) => (
-              <LecturerTopicTableRow key={topic.id} topic={topic} />
+              <LecturerTopicTableRow
+                key={topic.id}
+                topic={topic}
+                onSave={(data) => handleEditLecturerTopic(topic.id, data)}
+              />
             ))}
           </TableBody>
         </Table>
@@ -98,7 +146,7 @@ function DosenTopikSayaPage() {
           <h2 className="text-2xl font-black text-slate-900 border-l-4 border-blue-600 pl-4">
             USULAN MAHASISWA
           </h2>
-          <StudentTopicFormDialog type="newTopic" />{" "}
+          <StudentTopicFormDialog type="new" onSave={handleAddStudentTopic} />
         </div>
       </div>
       <div className="rounded-md border border-slate-200 bg-white shadow-sm overflow-hidden">
@@ -124,7 +172,11 @@ function DosenTopikSayaPage() {
           </TableHeader>
           <TableBody>
             {studentTopics.map((topic) => (
-              <StudentTopicTableRow key={topic.id} topic={topic} />
+              <StudentTopicTableRow
+                key={topic.id}
+                topic={topic}
+                onSave={(data) => handleEditStudentTopic(topic.id, data)}
+              />
             ))}
           </TableBody>
         </Table>

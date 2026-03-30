@@ -1,13 +1,13 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import LoginPage from "./pages/login/LoginPage";
-import StudentDashboardPage from "./pages/mahasiswa/dashboard/StudentDashboardPage";
-import StudentUploadDPSPage from "./pages/mahasiswa/StudentUploadDPSPage";
+import StudentDashboardPage from "./pages/mahasiswa/dashboard/DashboardPage";
+import StudentUploadDPSPage from "./pages/mahasiswa/UploadDPSPage";
 import KoordinatorDashboardPage from "./pages/koordinator/kelolaTopik/KoordinatorDashboardPage";
 import DosenDashboardPage from "./pages/dosen/dashboard/DosenDashboardPage";
-import DosenTopikSayaPage from "./pages/dosen/kelolaTopik/DosenKelolaTopikPage";
+import DosenTopikSayaPage from "./pages/dosen/kelolaTopik/ManageTopicPage";
 import DosenHasilReviewPage from "./pages/dosen/hasilReview/DosenHasilReviewPage";
-import StudentFAQPage from "./pages/mahasiswa/StudentFAQPage";
+import StudentFAQPage from "./pages/mahasiswa/FAQPage";
 import MainLayout from "./components/MainLayout";
 import DosenReviewList from "./pages/dosen/reviewSaya/DosenReviewList";
 import DosenReviewPage from "./pages/dosen/reviewSaya/DosenReviewPage";
@@ -15,6 +15,7 @@ import DosenReviewPage from "./pages/dosen/reviewSaya/DosenReviewPage";
 import AturReviewerPage from "./pages/koordinator/aturReviewer/AturReviewerPage";
 import MonitoringReviewPage from "./pages/koordinator/monitoring/MonitoringReviewPage";
 import ManajemenPeriodePage from "./pages/koordinator/periode/ManajemenPeriodePage";
+import UserManagementPage from "./pages/koordinator/users/UserManagementPage";
 
 import { TooltipProvider } from "./components/ui/tooltip";
 import TopicDetailPage from "./pages/shared/TopicDetailPage";
@@ -33,7 +34,7 @@ function App() {
             {/* mahasiswa */}
             <Route path="/m" element={<MainLayout role={"student"} />}>
               <Route index element={<StudentDashboardPage />} />
-              <Route path="topic/:id" element={<TopicDetailPage />} />
+              <Route path="topic/:code" element={<TopicDetailPage />} />
               <Route path="dps" element={<StudentUploadDPSPage />} />
               <Route path="faq" element={<StudentFAQPage />} />
             </Route>
@@ -56,7 +57,10 @@ function App() {
                 path="review/:topicCode/2"
                 element={<DosenReviewPage reviewPhase={2} />}
               />
-              <Route path="topic/:id" element={<TopicDetailPage />} />
+              <Route
+                path="topik-saya/topic/:code"
+                element={<TopicDetailPage />}
+              />
             </Route>
 
             {/* koordinator */}
@@ -65,12 +69,12 @@ function App() {
               <Route path="atur-reviewer" element={<AturReviewerPage />} />
               <Route path="monitoring" element={<MonitoringReviewPage />} />
               <Route path="periode" element={<ManajemenPeriodePage />} />
-              <Route path="users" element={<div>Halaman Manajemen User</div>} />
-              <Route path="topic/:id" element={<TopicDetailPage />} />
+              <Route path="users" element={<UserManagementPage />} />
+              <Route path="topic/:code" element={<TopicDetailPage />} />
             </Route>
 
             {/* koordinator and dosen */}
-            {/* <Route path="/topic/:id" element={<TopicDetailPage />} /> */}
+            <Route path="/topic/:code" element={<TopicDetailPage />} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>

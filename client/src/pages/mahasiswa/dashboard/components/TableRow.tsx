@@ -1,19 +1,23 @@
 import { TableRow, TableCell } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { PickTopicDialog } from "./PickTopicDialog";
+import { PickTopicDialog } from "./PickTopicDialog.tsx";
 import { TopicNotesDialog } from "@/components/TopicNotesDialog.tsx";
 
 import type { Topic } from "../types.ts";
 import { Link } from "react-router-dom";
 
-const renderAction = (topic: Topic, onSelectTopic: (topic: Topic) => void) => {
+const renderAction = (
+  topic: Topic,
+  onSelectTopic: (topic: Topic) => void,
+  disabled: boolean,
+) => {
   switch (topic.status) {
     case "available":
       return (
         <PickTopicDialog
           topicTitle={topic.title}
           onConfirm={() => onSelectTopic(topic)}
+          disabled={disabled}
         />
         // <Button
         //   size="sm"
@@ -33,20 +37,15 @@ const renderAction = (topic: Topic, onSelectTopic: (topic: Topic) => void) => {
       );
     case "selected":
       return (
-        <Badge className="w-full justify-center py-1.5 bg-blue-600 hover:bg-blue-700 text-white shadow-md">
-          Terpilih
+        <Badge className="w-full justify-center py-1.5 bg-blue-600 text-white shadow-md">
+          Diambil
         </Badge>
       );
     case "taken":
       return (
-        <Button
-          disabled
-          size="sm"
-          variant="secondary"
-          className="w-full bg-gray-200 text-gray-500 border border-gray-300"
-        >
-          Diambil
-        </Button>
+        <Badge className="w-full bg-gray-200 text-gray-500 border border-gray-300">
+          Tidak Tersedia
+        </Badge>
       );
     default:
       return null;
@@ -56,13 +55,15 @@ const renderAction = (topic: Topic, onSelectTopic: (topic: Topic) => void) => {
 function TopicTableRow({
   topic,
   onSelectTopic,
+  disabled,
 }: {
   topic: Topic;
   onSelectTopic: (topic: Topic) => void;
+  disabled: boolean;
 }) {
   return (
     <>
-      <TableRow key={topic.id} className="hover:bg-slate-50">
+      <TableRow key={topic.id}>
         <TableCell className="font-medium text-center border-r">
           {topic.code}
         </TableCell>
@@ -79,7 +80,7 @@ function TopicTableRow({
             Lihat Topik
           </a> */}
           <Link
-            to={`./topic/${topic.id}`}
+            to={`./topic/${topic.code}`}
             className="text-sm font-semibold text-blue-600 hover:underline flex items-center justify-center gap-1"
           >
             Lihat Topik
@@ -107,7 +108,7 @@ function TopicTableRow({
         </TableCell>
 
         <TableCell className="p-3 border-r">
-          {renderAction(topic, onSelectTopic)}
+          {renderAction(topic, onSelectTopic, disabled)}
         </TableCell>
 
         <TableCell className="text-center font-bold text-slate-700">

@@ -8,6 +8,10 @@ export interface Topic {
   taker?: string;
   queueCount?: number;
   students?: StudentInQueue[];
+  reviewerNotes?:string;
+  studentNotes?:string;
+  isRevised?:boolean;
+  assignedStudentId?:string;
 }
 
 export interface StudentInQueue {

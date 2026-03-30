@@ -14,11 +14,11 @@ import {
 import { Trash2 } from "lucide-react";
 
 interface Props {
-  semesterName: string;
+  name: string;
   onConfirm: () => void;
 }
 
-function DeleteDialog({ semesterName, onConfirm }: Props) {
+function DeleteDialog({ name, onConfirm }: Props) {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
@@ -32,11 +32,11 @@ function DeleteDialog({ semesterName, onConfirm }: Props) {
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle className="font-black text-2xl">
-            Hapus Periode
+            Hapus User
           </AlertDialogTitle>
           <AlertDialogDescription>
-            Apakah Anda yakin ingin menghapus <strong>{semesterName}</strong>?
-            Tindakan ini tidak dapat dibatalkan.
+            Apakah Anda yakin ingin menghapus <strong>{name}</strong>? Tindakan
+            ini tidak dapat dibatalkan.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

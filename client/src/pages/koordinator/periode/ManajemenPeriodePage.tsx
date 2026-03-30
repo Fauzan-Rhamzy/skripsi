@@ -10,14 +10,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Button } from "@/components/ui/button";
-import {
-  Plus,
-  Edit2,
-  Trash2,
-  CheckCircle2,
-  Save,
-  CalendarRange,
-} from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import SemesterFormDialog from "./components/SemesterFormDialog";
 import DeleteDialog from "./components/DeleteDialog";
@@ -68,9 +61,8 @@ function ManajemenPeriodePage() {
   };
 
   const handleDeleteSemester = (id: string, name: string) => {
-    if (confirm(`Apakah Anda yakin ingin menghapus "${name}"?`)) {
-      setSemesters((prev) => prev.filter((s) => s.id !== id));
-    }
+    console.log(`semester ${name} dihapus`);
+    setSemesters((prev) => prev.filter((s) => s.id !== id));
   };
 
   return (
@@ -130,11 +122,11 @@ function ManajemenPeriodePage() {
           <Table>
             <TableHeader className="bg-slate-50">
               <TableRow>
-                <TableHead className="font-bold border-r">
+                <TableHead className="font-bold border-r pl-3">
                   Nama Periode / Semester
                 </TableHead>
                 <TableHead className="w-32 font-bold text-center border-r">
-                  Kode
+                  Kode Semester
                 </TableHead>
                 <TableHead className="w-40 font-bold text-center border-r">
                   Status
@@ -148,12 +140,10 @@ function ManajemenPeriodePage() {
               {semesters.map((s) => (
                 <TableRow
                   key={s.id}
-                  className={s.isActive ? "bg-blue-50/30" : ""}
+                  className={s.isActive ? "bg-green-50" : ""}
                 >
-                  <TableCell className="font-bold text-slate-700 border-r">
-                    {s.name}
-                  </TableCell>
-                  <TableCell className="text-center font-mono border-r">
+                  <TableCell className="pl-3 border-r">{s.name}</TableCell>
+                  <TableCell className="text-center border-r">
                     {s.code}
                   </TableCell>
                   <TableCell className="text-center border-r">
@@ -198,7 +188,7 @@ function ManajemenPeriodePage() {
                       </Button> */}
                       <DeleteDialog
                         semesterName={s.name}
-                        onConfirm={() => handleDeleteSemester}
+                        onConfirm={() => handleDeleteSemester(s.id, s.name)}
                       />
                     </div>
                   </TableCell>

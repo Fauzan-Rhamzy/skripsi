@@ -5,40 +5,50 @@ import {
   TableHead,
   TableBody,
 } from "@/components/ui/table";
-import TopicTableRow from "./components/TopicTableRow";
+import TopicTableRow from "./components/TableRow";
 
 import { topics as mockTopics } from "./mockData";
 import type { Topic } from "./types";
 import { useState, useEffect } from "react";
+import { Badge } from "@/components/ui/badge";
 
 export default function StudentDashboardPage() {
+  const [topics, setTopics] = useState(mockTopics);
+  const [queues, setQueues] = useState(2);
+
   useEffect(() => {
     console.log("Ambil data semua topik yang aktif di semester ini");
-    // const topics = mockTopics;
   }, []);
 
-  const [localTopics, setLocalTopics] = useState<Topic[]>(mockTopics);
   const handleSelectTopic = (topic: Topic) => {
-    setLocalTopics((prev) =>
+    setTopics((prev) =>
       prev.map((t) =>
         t.id === topic.id
-          ? { ...t, status: "queued" as const, queueCount: t.queueCount + 1 }
+          ? { ...t, status: "queued", queueCount: t.queueCount + 1 }
           : t,
       ),
     );
+    setQueues((prev) => prev - 1);
     console.log(`dipilih: ${topic.id}`);
   };
+
   return (
     <div className="p-8">
+      {/* header */}
       <div className="mb-6">
         <h1 className="text-3xl font-black tracking-tight text-slate-900">
           Semester Ganjil 2025/2026
         </h1>
-        <p className="text-muted-foreground mt-1">
+        <p className="mt-1">
           Silakan pilih topik skripsi yang tersedia di bawah ini.
         </p>
       </div>
 
+      <Badge className="mb-3 font-black py-1.5 bg-blue-50 text-blue-700 border-blue-200">
+        Jatah Antrean: {queues}
+      </Badge>
+
+      {/* tabel */}
       <div className="rounded-md border border-slate-200 bg-white shadow-sm overflow-hidden">
         <Table>
           <TableHeader className="bg-slate-50 border-b border-slate-200">
@@ -67,11 +77,12 @@ export default function StudentDashboardPage() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {localTopics.map((topic) => (
+            {topics.map((topic) => (
               <TopicTableRow
                 key={topic.id}
                 topic={topic}
                 onSelectTopic={handleSelectTopic}
+                disabled={queues <= 0}
               />
               // <TableRow key={topic.id} className="hover:bg-slate-50">
               //   <TableCell className="font-medium text-center border-r">

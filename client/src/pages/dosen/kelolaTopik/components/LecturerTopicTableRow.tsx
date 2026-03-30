@@ -75,7 +75,13 @@ const renderAction = (topic: Topic) => {
   );
 };
 
-function TopicTableRow({ topic }: { topic: Topic }) {
+function TopicTableRow({
+  topic,
+  onSave,
+}: {
+  topic: Topic;
+  onSave: (data: any) => void;
+}) {
   return (
     <>
       <TableRow key={topic.id} className="hover:bg-slate-50">
@@ -85,14 +91,20 @@ function TopicTableRow({ topic }: { topic: Topic }) {
         <TableCell className="font-medium border-r">{topic.title}</TableCell>
 
         <TableCell className="text-center border-r">
-          <a
-            href={`/topic/${topic.id}`}
+          {/* <a
+            href={`/topic/${topic.code}`}
             target="_blank"
             rel="noreferrer"
             className="text-sm font-semibold text-blue-600 hover:underline flex items-center justify-center gap-1"
           >
             Lihat Topik
-          </a>
+          </a> */}
+          <Link
+            to={`./topic/${topic.code}`}
+            className="text-sm font-semibold text-blue-600 hover:underline flex items-center justify-center gap-1"
+          >
+            Lihat Topik
+          </Link>
         </TableCell>
 
         <TableCell className="text-center border-r">
@@ -130,7 +142,7 @@ function TopicTableRow({ topic }: { topic: Topic }) {
             >
               <Edit2 className="h-4 w-4" />
             </Button> */}
-            <TopicFormDialog type="editTopic" initialTopic={topic} />
+            <TopicFormDialog type="edit" initialTopic={topic} onSave={onSave} />
             <DeleteTopicDialog topicTitle={topic.title} />
             {/* <Button
             variant="outline"

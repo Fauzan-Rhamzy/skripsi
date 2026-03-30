@@ -14,11 +14,13 @@ import { Button } from "@/components/ui/button";
 interface PickTopicDialogProps {
   topicTitle: string;
   onConfirm: () => void;
+  disabled: boolean;
 }
 
 export function PickTopicDialog({
   topicTitle,
   onConfirm,
+  disabled,
 }: PickTopicDialogProps) {
   return (
     <AlertDialog>
@@ -26,6 +28,7 @@ export function PickTopicDialog({
         <Button
           className="w-full bg-green-600 hover:bg-green-800 hover:text-white font-bold border-2 transition-all hover:cursor-pointer text-white"
           variant="outline"
+          disabled={disabled}
         >
           Ambil
         </Button>
@@ -38,7 +41,8 @@ export function PickTopicDialog({
             <span className="text-green-600">{topicTitle}</span>?
           </AlertDialogTitle>
           <AlertDialogDescription>
-            Tindakan ini akan mendaftarkan Anda ke dalam antrean topik tersebut.
+            Untuk keluar dari antrean Anda perlu menghubungi dosen topik atau
+            Koordinator Tugas Akhir.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

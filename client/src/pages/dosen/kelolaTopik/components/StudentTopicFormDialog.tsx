@@ -30,7 +30,6 @@ import {
   AlertDialogCancel,
   AlertDialogAction,
 } from "@/components/ui/alert-dialog";
-
 import {
   Command,
   CommandEmpty,
@@ -44,6 +43,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+
 interface formTopic {
   code: string;
   title: string;
@@ -54,13 +54,26 @@ interface formTopic {
   type: "json" | "pdf";
 }
 
-function TopicFormDialog({
-  type,
-  initialTopic,
-}: {
-  type: "newTopic" | "editTopic";
-  initialTopic?: formTopic;
-}) {
+import type { Topic } from "../types.ts";
+
+interface Props {
+  type: "new" | "edit";
+  initialTopic?: Topic;
+  onSave: (data: any) => void;
+}
+
+const students = [
+  {
+    name: "Sebastian",
+    npm: "6182201078",
+  },
+  {
+    name: "Cikal",
+    npm: "6182201069",
+  },
+];
+
+function TopicFormDialog({ type, initialTopic, onSave }: Props) {
   const [open, setOpen] = useState(false);
   const [contentType, setContentType] = useState("pdf");
   const [editorValue, setEditorValue] = useState<Content>(""); // state for the editor
@@ -74,17 +87,6 @@ function TopicFormDialog({
     // isRevised: initialTopic?.isRevised || false,
     assignedStudentId: initialTopic?.assignedStudentId || "",
   });
-
-  const students = [
-    {
-      name: "Sebastian",
-      npm: "6182201078",
-    },
-    {
-      name: "Cikal",
-      npm: "6182201069",
-    },
-  ];
 
   const [selectedStudent, setSelectedStudent] = useState<
     (typeof students)[number] | null
@@ -107,10 +109,10 @@ function TopicFormDialog({
           : file
             ? file.name
             : "No PDF uploaded",
-      timestamp: new Date().toISOString(),
     };
 
     console.log("Saving complete topic JSON data:", completeTopicData);
+    onSave(completeTopicData);
     setOpen(false);
   };
 
@@ -121,14 +123,14 @@ function TopicFormDialog({
         onOpenChange={(isOpen) => {
           setOpen(isOpen);
           if (isOpen) {
-            if (type === "editTopic" && initialTopic) {
+            if (type === "edit" && initialTopic) {
               setFormData({
                 code: initialTopic.code,
                 title: initialTopic.title,
-                reviewerNotes: initialTopic.reviewerNotes,
-                studentNotes: initialTopic.studentNotes,
+                reviewerNotes: initialTopic.reviewerNotes || "",
+                studentNotes: initialTopic.studentNotes || "",
                 // isRevised: initialTopic.isRevised || false,
-                assignedStudentId: initialTopic.assignedStudentId,
+                assignedStudentId: initialTopic.assignedStudentId || "",
               });
               // setContentType(initialTopic.type);
               // setEditorValue();
@@ -151,7 +153,7 @@ function TopicFormDialog({
         }}
       >
         <DialogTrigger asChild>
-          {type === "newTopic" ? (
+          {type === "new" ? (
             <Button className="bg-green-600 hover:bg-green-700 font-bold">
               <Plus className="mr-2 h-5 w-5" /> Tambah Topik
             </Button>
@@ -172,7 +174,7 @@ function TopicFormDialog({
         >
           <DialogHeader className="p-6 pb-4 border-b shrink-0">
             <DialogTitle className="text-2xl font-black text-slate-900">
-              {type === "newTopic" ? "Tambah Topik Baru" : "Edit Topik"}
+              {type === "new" ? "Tambah Topik Baru" : "Edit Topik"}
             </DialogTitle>
           </DialogHeader>
 
@@ -184,7 +186,13 @@ function TopicFormDialog({
                 <Input
                   id="code"
                   value={formData.code}
-                  onChange={handleChange}
+                  // onChange={handleChange}
+                  onChange={(e) => {
+                    setFormData({
+                      ...formData,
+                      code: e.target.value.toUpperCase(),
+                    });
+                  }}
                   placeholder="e.g. FR01ACS"
                   className="mt-1.5"
                 />

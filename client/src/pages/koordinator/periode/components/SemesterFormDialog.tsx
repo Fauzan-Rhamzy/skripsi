@@ -9,6 +9,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectItem,
+  SelectContent,
+} from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Plus, Edit2 } from "lucide-react";
@@ -32,6 +39,8 @@ function SemesterFormDialog({ type, initialData, onSave }: Props) {
     name: initialData?.name || "",
     code: initialData?.code || "",
   });
+  const [year, setYear] = useState("2025");
+  const [term, setTerm] = useState("1");
 
   useEffect(() => {
     if (open && type === "edit" && initialData) {
@@ -42,11 +51,17 @@ function SemesterFormDialog({ type, initialData, onSave }: Props) {
   }, [open, type, initialData]);
 
   const handleAction = () => {
-    if (!formData.name || !formData.code) {
-      alert("Semua field wajib diisi!");
-      return;
-    }
-    onSave(formData);
+    const periode = `${year}${term}`;
+    const formattedName = `Semester ${term === "1" ? "Ganjil" : "Genap"} ${year}/${parseInt(year) + 1}`;
+    const customCode = parseInt(year) - 1966;
+    // if (!formData.name || !formData.code) {
+    //   alert("Semua field wajib diisi!");
+    //   return;
+    // }
+    onSave({
+      code: `${customCode}`,
+      name: formattedName,
+    });
     setOpen(false);
   };
 
@@ -59,9 +74,9 @@ function SemesterFormDialog({ type, initialData, onSave }: Props) {
           </Button>
         ) : (
           <Button
-            variant="ghost"
+            variant="outline"
             size="icon"
-            className="h-8 w-8 text-slate-400"
+            className="h-8 w-8 text-slate-500 hover:text-slate-900 hover:cursor-pointer"
           >
             <Edit2 className="h-4 w-4" />
           </Button>
@@ -76,22 +91,33 @@ function SemesterFormDialog({ type, initialData, onSave }: Props) {
             Masukkan informasi semester baru di bawah ini.
           </DialogDescription>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
+        <div className="gap-4 py-4 flex">
           <div className="grid gap-2">
-            <Label htmlFor="name" className="font-bold">
+            {/* <Label htmlFor="name" className="font-bold">
               Nama Periode / Semester
-            </Label>
-            <Input
+            </Label> */}
+            {/* <Input
               id="name"
               placeholder="Contoh: Semester Ganjil 2026/2027"
               value={formData.name}
               onChange={(e) =>
                 setFormData({ ...formData, name: e.target.value })
               }
-            />
+            /> */}
+            <Label className="font-bold">Tahun Akademik</Label>
+            <Select value={year} onValueChange={setYear}>
+              <SelectTrigger>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="2026">2026</SelectItem>
+                <SelectItem value="2024">2024</SelectItem>
+                <SelectItem value="2025">2025</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
           <div className="grid gap-2">
-            <Label htmlFor="code" className="font-bold">
+            {/* <Label htmlFor="code" className="font-bold">
               Kode Semester
             </Label>
             <Input
@@ -101,7 +127,17 @@ function SemesterFormDialog({ type, initialData, onSave }: Props) {
               onChange={(e) =>
                 setFormData({ ...formData, code: e.target.value })
               }
-            />
+            /> */}
+            <Label className="font-bold">Semester</Label>
+            <Select value={term} onValueChange={setTerm}>
+              <SelectTrigger>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="1">Ganjil</SelectItem>
+                <SelectItem value="2">Genap</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
         </div>
         <DialogFooter>
